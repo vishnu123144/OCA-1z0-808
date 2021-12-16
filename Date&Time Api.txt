@@ -1,0 +1,53 @@
+Date& Time Api: developed by joda.org
+
+    These api defines several classes and 
+interfaces to handle date and time very effectively
+
+Date,Calender,Time stamp:-->1.7v
+
+
+import java.time.* package
+//to print present date 
+Locadate date=new Localdate();
+sop(date);
+
+//to print current time
+LocalTime time=LocalTime();
+sop(time);
+
+individual date and time
+
+int dd=date.getDayOfMonth();
+int mm=date.getMonthValue();
+int yy=date.getYear();
+System.out.printf("%d-%d-%d", dd,mm,yy);
+
+//metods for time
+LocalTime time=LocalTime();
+
+int hour=time.getHour();
+int minute=time.getMinute();
+int second=time.getSecond();
+int nanoseconds=time.getNano();
+System.out.printf("%d:%d:%d:d",hour,minute,second,nanoseconds);
+
+
+//to print localdate time at a time
+LocalDateTime dt=LocalDateTime.now();
+System.out.println(dt);
+
+//to create your own date
+LocalDateTime dt2=LocalDateTime.of(1999, 8, 27, 12, 45, 50);
+	System.out.println(dt2);
+	System.out.println(dt2.plusMonths(6));
+	System.out.println(dt2.plusYears(21));
+
+
+//Period
+Java Period class is used to measures time in years, months and days.
+LocalDate birthday=LocalDate.of(1999, 8, 27);
+LocalDate today=LocalDate.now();
+System.out.println(Period.between(birthday, today));
+Period p=Period.between(birthday,today);
+System.out.println(p.getYears());
+	

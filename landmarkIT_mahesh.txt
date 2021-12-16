@@ -1,0 +1,137 @@
+********************************************************************************************************************************
+CSS
+********************************************************************************************************************************
+1:
+Is it important to test the webpage in different browsers? Explain in detail ?
+
+yes, 
+in somecases the web browser won't work properly in other browsers , so it might cause business lagging.
+
+2:
+What are the different types of Selectors in CSS?
+	1 pseudo 
+	2 combinator
+	3 id
+	4 attribute
+
+3 :
+The units in CSS are required to define the measurement such as margin: 20px . Here px is the pixel
+
+4:
+	div, p   ->  it will select all <div> elements and all the <p> elements
+	div p	 ->  it will selects all elements <p> and inside <div> elements
+	div ~ p	 ->  it will selects every element <p> that are existing in <div> element
+	div + p  ->  it will selects the first element <p> those are  placed immediately after <div> elements
+	div > p  -> it wiill selects all elements<p> where the parent is a <div> element
+
+********************************************************************************************************************************
+JavaScript
+********************************************************************************************************************************
+1 :
+When a web page is loaded, the browser creates a Document Object Model of the page ?
+
+Core DOM - standard model for all document types
+XML DOM - standard model for XML documents
+HTML DOM - standard model for HTML documents
+
+2 :
+diffrent data types present in javascript ?
+
+Boolean type   :Boolean represents a logical entity and can have two values: true and false. See Boolean and Boolean for more details.
+Null type      :The Null type has exactly one value: null. See null and Null for more details.
+Undefined type : A variable that has not been assigned a value has the value undefined. See undefined and Undefined for more details.
+Number type    : ECMAScript has two built-in numeric types: Number and BigInt
+
+3:
+What is == in JavaScript ?
+
+== is a comparison operator, which transforms the operands having the same type before comparison.
+=== is a strict equality comparison operator in JavaScript, which returns false for the values which are not of a similar type. This operator performs type casting for equality. If we compare 2 with “2” using ===, then it will return a false value.
+
+4:
+The NaN property represents "Not-a-Number" value. This property indicates that a value is not a legal number ?
+
+The NaN property is the same as the Number.Nan property.
+function fun(x) {
+  if (isNaN(x)) {
+    return NaN;
+  }
+  return x;
+}
+
+********************************************************************************
+HTML
+********************************************************************************
+1:
+What are tags and attributes in HTML ?
+A tag is used for representing html element in a program.
+an attribute is a way of describing the characteristics of an HTML element.
+
+2:
+What are the various formatting tags in HTML?
+
+<b>   =>   text should be bold
+      <strong> =>  strong text
+       <sub> =>subscript text
+       <sup> => superscript text
+3:
+Explain the difference between link tag <link> and anchor tag <a> ?
+
+The anchor element is used to link to another page.
+     The link tag is used to link to external style sheets.
+4:
+Explain input types provided by HTML for forms with sample code ?
+input types are:
+	text      : text is used input text field
+	password  : password is used for a one-line password input field
+        submit    : used for  a submit button to submit the form to server
+        Reset     : reset button is used to reset the form or page
+
+********************************************************************************************************************************
+DATA_BASE:
+********************************************************************************************************************************
+1 :
+Define DBMS and RDBMS with difference?
+
+DBMS  : In DBMS, data is generally stored in either a hierarchical form or a navigational form
+RDBMS : In RDBMS, the tables have an identifier called primary key and the data values are stored in the form of tables.
+
+DBMS vs RDBMS differences :
+
+	DBMS stores data as a file whereas in RDBMS, data is stored in the form of tables.
+	DBMS supports single users, while RDBMS supports multiple users.
+
+2 :
+Enlist some commands of DDL, DQL, DML, DCL and TCL Commands ?
+
+DDL : create, drop, alter, truncate
+DML : insert, update, delete
+DQL : select ,
+DCL : Grant, revoke
+TCL : commit, rollback, savepoint
+
+3 :
+Define Join types and explain with dataset ?
+
+Merging two data sets in sql via some condition is called joins
+There are different type of joins like left, right, full, inner
+Left Join  : in left join the left side table data always be present either tha joining condition mathces or not and right side data will be null if its not mathces
+Right Join : in Right join the Right side table data always be present either tha joining condition mathces or not and left side data will be null if its not mathces
+full Join  : its an combination of left join and right join, we will have nulls in both both tables after joining
+inner Join : Its a type of join where the condition is matching and ignores all non mathced records
+
+4 :
+What do you understand by Data Redundancy? Does it impact the Data Integrity ?
+
+Data redundancy means same type of data is stored in multiple locations 
+due to this the data looks inconsistancy and unrealiable information
+
+5 :
+What are the different Types of SQL Constraints available?
+
+There are many constrains int sql metioned below
+primary key
+foreign key
+default
+unique
+not null

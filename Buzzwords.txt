@@ -1,0 +1,55 @@
+11: High performance
+
+Hotspot JVM: -->1.2 --should be introduced in 1.2 version
+1.3 by default it is present
+
+JVM with jit compiler-->It is present in jvm -->Hotspot jvm
+
+java has high performance..??
+
+-->jvm always monitors and optimises code
+-->JIT compiler -->most commonly repeated methods instead of 
+translating every time we will translate one time only
+
+
+Dynamic:
+
+house-->1o members
+Rice-->1 bag
+per year-->12 rice bags
+
+static programming-->all the required things will loading and start execution
+
+Dynamic nature-->when ever we require we will be loading or loadung on demand
+
+class Test{
+   public static void amin(String[] args){
+     Student s=new Student();
+     Car c= new Car();
+}
+}
+
+java Test
+
+   Test.class,Student.class,Customer.class
+
+when ever we create obeject of student and customer at the time
+ only student.class and customer.class files will be generated.  //dynamic nature
+
+for every class one .class file will be generated
+
+
+
+JDK: Java development kit
+
+write code-->compile that code-->run code
+
+JRE(Java Runtime Environment)
+
+Deliver developed application to client
+-->just run application
+
+JVM (Java Virtual machine):
+convert bytecode into machine code
+
+

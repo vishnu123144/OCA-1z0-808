@@ -1,0 +1,219 @@
+
+
+
+unary operators: [],x++,x--,++x,--x,~,!,new,<type>
+
+Arithematic operators:
+
+       *,/,%,+,-
+shift opeartors:
+    >>,>>>,<<
+
+comparison operators:
+<,<=,>,>=,instance of
+
+equality operators:
+==,!=
+
+bitwise operators:
+&
+^
+!
+      
+binary operator: a+b
+
+Ternary operator:  a>b?a:b
+
+
+highest priority will goes to unary operator.
+
+second priority will goes to binary operator.
+
+third priority will goes to ternary operator.
+
+
+
+
+Increment and decrement operators:
+
+++x -->pre increment     first increment and assign
+x++ -->post increment    first assign and increment
+
+--x  -->pre decrement
+x--  -->post decrement 
+
+
+expression    initial value ofx      initial value of y:    final value of x:
+
+y=++x            10                       11                     11
+
+y=x++            10                       11                     11
+
+y=--x            10                       9                      9
+
+y=x--            10                       10                     9
+
+
+int x=10                            int x=10;
+
+int y=++x                           int y=++10;
+
+sop(y)                              sop(y);
+
+   
+
+o/p:11                             o/p:compile time error -->unexpected type  
+                                                    found:value 
+                                                    required:variable                            
+
+increment and decremnt operators applicable only for values
+
+
+int x=10;
+int y=++ (++x) //(in brackets it will become value after increment)
+sop(y);
+
+o/p:compile time error 
+
+
+final int x=10;
+x++;
+sop(x);   //compile time error  cannot assign value to final variable x
+
+final variables we cannot apply increment and decrement operator.
+boolean values we cannot apply increment and decrement operator.
+
+
+char ch='a';       double d=1.8   boolean b=true;
+ch++;                   d++;       b++
+sop(ch);             sop(d);       sop(b)  //compile time error
+
+//valid: o/p:b              //valid o/p:11.8
+
+
+we can apply increment and decrement operator for every primitive type except boolean
+
+diff between b++ and b=b+1
+
+byte b=10                            byte b=10
+b=b+1                                 b++     //b=(byte)(b+1)
+sop(b)//compile time error          sop(b) //11
+
+
+
+ex:  byte a=10
+     byte b=20
+     byte c=a+b;
+     sop(c);
+
+
+a+b -->result willbe max(int,typeof a,type of b)
+above example
+max (int,byte,byte)-->return integer
+byte to integer//compile time error
+
+
+Arithematic operators:
+
+if we apply any arithematic operator between two variable a and b the result type is always 
+max(int,type of a,type of b)
+
+
+byte + byte = int;
+byte + short = int;
+short + short = int;
+byte + long = long;
+long+
+float + long = float;
+char + char = int;
+char+double=double;
+
+
+sop(10/0)-->arithematic exception divided by zero
+sop(10/0.0)-->infinity  -->because it is double type
+dop(-10.0/0)-->-infinity
+sop(0.0/0)-->nan-->not a number
+
+In integral arithematic there is no way to reperesent infinity for byte,short,int,long we will get arithematic exception
+
+but in floating point arithematic(float and double) there is a way to
+ represent infinity:
+
+POSITIVE_INFINITY
+NEGATIVE_INFINITY
+
+we wont get any arithematic exception in floating point arithematic
+
+javap java.lang.double -->to check double infinity
+
+
+
+
+string concatenation operator (+):
+
+the only operator overloaded method in java is +operator
+
+sometime it acts as arithematic operator and
+sometime it acts as string concatenation operator
+
+
+Q)String a="durga";
+int a=10,b=20,c=30;
+op:
+sop(a+b+c+d)  -->durga102030
+sop(b+c+d+a)  -->60durga
+sop(b+c+a+d) -->30durga30
+sop(b+a+c+d) -->10durga2030
+
+order of evalution will be left to right
+
+atleast one argument is string + operator will acts as concatenation
+
+
+Q)String a="durga";
+int a=10,b=20,c=30;
+
+1>a=b+c+d;  cpmpile time error//incompatible types found:int,required:string
+2)a=a+b+c;  //valid
+3)b=a+c+d;  compile time error
+4)b=b+c+d;  //valid
+
+Relational operators:(<,<=,>,>=)
+sop(10<20)-->true
+sop('a'<10)-->false
+sop('a'<97.6)-->true
+(true<false)-->compile time error >operator cannot be applied to (boolean,boolean),(string,string)
+
+equality operators(==,!=):
+sop(10==20); -->false
+sop('a'=='b);-->false
+sop(false==false)-->true
+
+== operator applied to boolean values,object type,primitive types also
+
+
+Object a1;
+object a2: a1==a2 -->true if both are pointing to same object
+
+
+
+diff between == and equals:
+
+== operator-->used for reference comparison both are pointing to same object
+it returns true
+
+equals() -->used for content comparison
+
+ex:
+
+String s1=new String("durga");
+String s2=new String("durga);
+sop(s1==s2)       //false
+sop(s1.equals(s2)) //true
+
+
+instanceOf operator: to check whether the given object is particular type or not
+
+
+ 
+

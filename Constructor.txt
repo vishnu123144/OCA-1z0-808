@@ -1,0 +1,98 @@
+constructors:
+
+call to this : Call to super() must be first statement in Derived(Student) Class constructor.
+
+we cannot use call to this and call to super  keyword both at a time.
+
+
+Concept: super keyword
+
+--> The super keyword in java is a reference variable that is used to refer parent class objects.
+--> The keyword “super” came into the picture with the concept of Inheritance.
+--> Basically this form of super is used to initialize superclass variables 
+--> when there is no constructor present in superclass. 
+--> On the other hand, it is generally used to access the specific variable of a superclass.
+
+// Java Program to Illustrate super keyword
+ 
+// Class 1
+// Base class
+// Here it is vehicle class
+class Vehicle {
+ 
+    // Attribute
+    int maxSpeed = 120; //instance variable
+}
+ 
+// Class 2
+// sub class Car extending vehicle
+class Car extends Vehicle {
+    int maxSpeed = 180;
+ 
+    // Method
+    void display()
+    {
+        // Printing maxSpeed of parent class (vehicle) as
+        // super keyword refers to parent class
+        System.out.println("Maximum Speed: "
+                           + super.maxSpeed);
+    }
+}
+ 
+// Class 3
+// Main class
+class GFG {
+ 
+    // Main driver method
+    public static void main(String[] args)
+    {
+        // Creating an object of child class
+        Car small = new Car();
+ 
+        // Calling out method defined inside child class
+        small.display();
+    }
+}
+
+
+Super keyword                                                                     
+The super keyword in Java is a reference variable                                 
+that is used to refer parent class objects.
+
+super can be used to call parent class’ variables and methods.
+
+The variables and methods to be called through
+ super keyword can be done at any time,
+
+If one does not explicitly invoke a superclass variables or methods, 
+by using super keyword, then nothing happens
+
+
+
+ call to super Super()
+
+  The super() in Java is a reference variable that is 
+      used to refer parent class constructors.
+
+super() can be used to call parent class’ constructors only.
+
+Call to super() must be first statement in Derived(Student) Class constructor.
+
+If a constructor does not explicitly invoke a superclass constructor by using super(), 
+the Java compiler automatically inserts a call to the no-argument constructor of the superclass
+
+this:call to this
+
+ this() should always be the first executable statement in the constructor.
+ Otherwise, the program will give compile time error. 
+
+ It is used to refer to the constructor 
+  belonging to the same class.
+
+
+this keyword:
+
+ this keyword is used with the objects only.
+ this refers to current object
+ex:this.variablename
+                                                                                 

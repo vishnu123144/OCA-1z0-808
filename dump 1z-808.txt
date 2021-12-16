@@ -1,0 +1,120 @@
+Q)public class Planet {
+    public String name;
+    public int moons;
+    public Planet( String name,int moons)
+    {
+        this.name=name;
+        this.moons=moons;
+    }
+  
+   public static void main(String[] args)
+   {
+       Planet[] planets={new Planet("mercury",0),
+           new Planet("venus",0),
+            new Planet ("earth",1),
+             new Planet("mars",2)
+       };
+       System.out.println(planets);
+         System.out.println(planets[2].name);
+           System.out.println(planets[2].moons);
+   }
+}
+
+o/p: [LPlanet;@7960847b
+earth
+1
+-------------------------------------------------------
+
+Q)
+public class MyClass {
+    public static void main(String args[]) {
+        int n=5;
+     do{
+         System.out.println(n--+" ");
+     }while(n==0);
+    }
+}
+
+o/p:5
+
+------------------------------------------------------
+
+Q)import java.util.*;
+public class MyClass {
+    public static void main(String args[]) {
+    ArrayList<Integer> points=new ArrayList<>();
+    points.add(1);
+    points.add(2);
+    points.add(3);
+    points.add(4);
+    points.add(null);   //we can add null values
+    points.remove(1);   //it will remove index
+    points.remove(null);
+    System.out.println(points);
+    }
+}
+
+o/p:1,3,4
+----------------------------------------
+Q)import java.util.*;
+public class MyClass {
+    int count;
+    public static void displayMsg()
+    {
+        System.out.println("welcome visit count:"+count++);
+    }
+    public static void main(String args[]) {
+     Myclass.displayMsg();
+     displayMsg();
+    }
+}
+
+o/p:/MyClass.java:6: error: non-static variable count cannot be referenced from a static context
+        System.out.println("welcome visit count:"+count++);
+
+--------------------------------------------------
+Q)public class MyClass {
+  
+public static void main(String args[]) {
+   int wd=0;
+   String[] days={"sun","mon","wed","sat"};
+   for(String s:days)
+   {
+       switch(s)
+       {
+           case "sat":
+           case "sun":
+               wd-=1;
+               break;
+           case "mon":
+               wd++;
+           case "wed":
+               wd+=2;
+       }
+   }
+   System.out.println(wd);
+}
+}
+
+o/p:3
+---------------------------------------
+Q)
+public class MyClass {
+  
+public static void main(String args[]) {
+ String[] strs={"A","B"};
+ int idx=0;
+ for(String s:strs)
+ {
+     strs[idx].concat("element"+idx);
+ }
+ for(idx=0;idx<strs.length;idx++)
+ {
+     System.out.println(strs[idx]);
+ }
+}
+}
+
+o/p:A
+    B
+

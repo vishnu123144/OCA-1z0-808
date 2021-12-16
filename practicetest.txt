@@ -1,0 +1,1395 @@
+Q)class Point {
+    static int x;
+    int y, z;
+    
+    public String toString() {
+        return "Point(" + x + ", " + y + ", " + z + ")";
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        Point p1 = new Point();
+        p1.x = 17;
+        p1.y = 35;
+        p1.z = -1;
+        
+        Point p2 = new Point();
+        p2.x = 19;
+        p2.y = 40;
+        p2.z = 0;
+        
+        System.out.println(p1); //Line n1              //static value will be changed each time when we assing new value 
+        System.out.println(p2); //Line n2              //for instance variable each time sepearte memory will be created
+    }
+}
+
+o/p:Point(19,35,-1)
+    Point(19,40,0)
+-----------
+Q)public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder("Hurrah! I Passed...");
+        sb.delete(0, 100); //start,end index
+        System.out.println(sb.length());
+    }
+}
+o/p:0
+----------------------
+Q)class Vehicle {
+     public int getRegistrationNumber() {
+         return 1;
+     }
+}
+ 
+class Car {
+     public int getRegistrationNumber() {
+         return 2;
+     }
+}
+ 
+public class Test {
+     public static void main(String[] args) {
+         Vehicle obj = new Car();       //here we cannot extends vehicle we cannot do upcasting
+         System.out.println(obj.getRegistrationNumber());
+     }
+}
+o/p:compile time error
+
+-----------
+
+public class Test {
+     public static void main(String[] args) {
+             String [] arr = new String[7];
+         System.out.println(arr);  //here we are printing address
+     }
+}
+o/p:some string containing @ symbol
+
+-------
+class Parent {
+     int i = 10;
+     Parent(int i) {
+         super();
+         this.i = i;
+     }
+}
+ 
+class Child extends Parent {
+     int j = 20;
+ 
+     Child(int j) {
+         super(0);
+         this.j = j;
+     }
+ 
+     Child(int i, int j) {
+         super(i);
+         this(j);   //we cannot call super() and this() at  a time call to super and call to this will be first statement in constructor
+     }
+ 
+}
+ 
+public class Test {
+     public static void main(String[] args) {
+         Child child = new Child(1000, 2000);
+         System.out.println(child.i + ":" + child.j);
+     }
+}
+
+o/p:compilation error Chile(int,int)
+----------------
+ 
+Q)public class Test {
+     public static void main(String[] args) {
+         List<LocalDate> dates = new ArrayList<>();
+         dates.add(LocalDate.parse("2018-7-11"));
+         dates.add(LocalDate.parse("1919-10-25"));
+         dates.add(LocalDate.of(2020, 4, 8));                         //pending
+         dates.add(LocalDate.of(1980, Month.DECEMBER, 31));
+ 
+         dates.removeIf(x -> x.getYear() < 2000);
+ 
+         System.out.println(dates);
+     }
+}
+
+o/p:Exception in thread "main" java.time.format.DateTimeParseException: Text '2018-7-11' could not be parsed at index 5
+--------
+Q)public class Test {
+     private static boolean flag = !true;
+ 
+     public static void main(String [] args) {
+         System.out.println(!flag ? args[0] : args[1]);  //javac Test.java 
+     }                                                   //java AM PM
+}
+o/p:AM
+------------------
+public class Test {
+     public static void main(String [] args) {
+         int a = 2;
+         boolean res = false;
+         res = a++ == 2 || --a == 2 && --a == 2;            //pending     ||operator will check condition if first condition is true it will not check 
+         System.out.println(a);                                              second condition // priority will be rom left to right
+     }
+}
+o/p:3
+--------------------
+q)private class Test            //only public,abstract and final class will be allowed
+{ 
+       public static void main(String args[])
+       { 
+           System.out.println(args[1]);
+       }
+}
+o/p:compilation error
+--------------------------------
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+ 
+abstract class Super {
+     public abstract void m1() throws IOException;
+}
+ 
+class Sub extends Super {
+     @Override
+     public void m1() throws IOException {
+         throw new FileNotFoundException();
+     }
+}
+ 
+public class Test {
+     public static void main(String[] args) {
+         Super s = new Sub();
+         try {
+             s.m1();
+         } catch (IOException e) {
+             System.out.print("A");
+         }  
+         catch(FileNotFoundException e) {
+             System.out.print("B");
+         }finally {
+             System.out.print("C");
+         }
+     }
+}
+
+o/p:/Test.java:24: error: exception FileNotFoundException has already been caught  
+         catch(FileNotFoundException e) {
+
+note:whenever we called m1 we need to handle io exception   (ioexception ids parent of filenotfoundException)
+
+IOException is thrown when an error occurred during an input-output operation. 
+That can be reading/writing to a file, a stream (of any type), a network connection, 
+connection with a queue, a database etc, pretty much anything that has to do with data transfer from your software to an external medium.
+
+------------
+import java.util.*;
+public class Test {
+     public static void main(String[] args) {
+         List<String> list = new ArrayList<>();
+         list.add(0, "Array");
+         list.add(0, "List");
+ 
+         System.out.println(list);
+     }
+}
+o/p:[Array,List] //if u add to the list in the same index we can add multiple values 
+-------------------------
+public class Test {
+     public static void main(String[] args) {
+         int score = 60;
+         switch (score) {
+             default:
+                 System.out.println("Not a valid score");
+             case score < 70:
+                 System.out.println("Failed");
+                 break;
+             case score >= 70:
+                 System.out.println("Passed");
+                 break;
+         }
+     }
+}
+o/p:/Test.java:7: error: incompatible types: boolean cannot be converted to int
+             case score < 70:   //case values shouid be constant and cannot be variable and conditions
+                        ^
+----------------
+import java.time.LocalDate;
+public class Test {
+     public static void main(String [] args) {
+         LocalDate d1 = LocalDate.parse("1999-09-09");
+         LocalDate d2 = LocalDate.parse("1999-09-09");                                    //pending
+         LocalDate d3 = LocalDate.of(1999, 9, 9);
+         LocalDate d4 = LocalDate.of(1999, 9, 9);
+         System.out.println((d1 == d2) + ":" + (d2 == d3) + ":" + (d3 == d4));
+     }
+}
+o/p:false:false:false
+----------------------------
+public class Test {
+     public static void main(String[] args) {
+         System.out.println(new Boolean("ture"));              //pending  it will create boolean object default value should be false
+     }
+}
+0/p:false
+------------------------
+import java.time.LocalDate;
+import java.time.Period;
+ 
+Q)public class Test {
+     public static void main(String [] args) {
+         LocalDate date = LocalDate.parse("2000-01-01");
+         Period period = Period.ofYears(-3000);
+         System.out.println(date.plus(period));                  //pending here we are adding the period of years to year the value shouid be -1000 
+     }
+}
+o/p:-1000-01-01
+-----------------------
+public class Test {
+ 
+     private static void add(double d1, double d2) {
+         System.out.println("double version: " + (d1 + d2));
+     }
+ 
+     private static void add(Double d1, Double d2) {
+        System.out.println("Double version: " + (d1 + d2));
+     }
+ 
+     public static void main(String[] args) {
+         add(10.0, null);
+     }
+ 
+}
+o/p: 
+Exception in thread "main" java.lang.NullPointerException
+	at Test.add(Test.java:8)
+	at Test.main(Test.java:12)
+----------------------------
+
+class Parent {
+     public String toString() {
+         return "Inner ";
+     }
+}
+ 
+class Child extends Parent {
+     public String toString() {
+         return super.toString().concat("Peace!");
+     }
+}
+ 
+public class Test {
+     public static void main(String[] args) {
+        //  Parent p=new Parent();
+        //  System.out.println(new Parent());
+         System.out.println(new Child());//to string method will be called when ever we call the reference of objct
+     }
+}
+o/p:Inner Peace !
+----------------
+class Message {
+    String msg = "Happy New Year!";
+    
+    public void print() {
+        System.out.println(msg);
+    }
+}
+ 
+public class Test {
+    public static void change(Message m) { //Line n5
+        m.msg = "Happy Holidays!"; //Line n6
+    }
+    
+    public static void main(String[] args) {
+        Message obj = new Message(); //Line n1
+        obj.print(); //Line n2
+        change(obj); //Line n3
+        obj.print(); //Line n4
+    }
+}
+o/p:Happy New Year!
+Happy Holidays!
+----------------------
+public class Test {
+     public static void main(String[] args) {
+         int grade = 75;
+         if(grade > 60)
+             System.out.println("Congratulations");  //if condition can execute with first line
+              System.out.println("You passed");     
+         else
+             System.out.println("You failed");
+     }
+}
+o/p:/Test.java:7: error: 'else' without 'if'
+         else
+         ^
+1 error
+-------------------
+public class Test {
+     public static void main(String[] args) {
+         int x = 5;
+         
+         while (x <= 10) 
+             System.out.println(x);     //while condition execute one statement only we are using without braces
+             x++;
+          
+         
+     }
+}
+o/p:infinite loop
+------------------------
+ 
+class Student {
+     private String name;
+     private int age;
+ 
+     Student(String name, int age) {
+         this.name = name;
+         this.age = age;
+     }
+ 
+     public String toString() {
+         return "Student[" + name + ", " + age + "]";
+     }
+ 
+     public boolean equals(Object obj) {
+         if(obj instanceof Student) {
+             Student stud = (Student)obj;
+             if(this.name.equals(stud.name) && this.age == stud.age) {
+                 return true;
+             }
+         }
+         return false;
+     }
+}
+ 
+public class Test {
+     public static void main(String[] args) {
+         List<Student> students = new ArrayList<>();
+         students.add(new Student("James", 25));
+         students.add(new Student("James", 27));
+         students.add(new Student("James", 25));
+         students.add(new Student("James", 25));
+ 
+         students.remove(new Student("James", 25));   //it will remove first object
+          
+ 
+         for(Student stud : students) {
+             System.out.println(stud);
+         }
+    }
+}
+o/p:Student[James, 27]
+Student[James, 25]
+Student[James, 25]
+------------------
+public class Test {
+     public static void main(String[] args) {
+         List<Integer> list = new ArrayList<>();
+         list.add(100);
+         list.add(200);
+         list.add(100);
+         list.add(200);
+         list.remove(new Integer(100)); here we are passing integer object it will remove first elemnet
+ 
+         System.out.println(list);
+     }
+}
+
+o/p:[200,100,200]
+----------
+import java.io.*;
+public class Test {
+     private static void m1() throws IOException {
+         
+         throw new Exception();
+     }
+ 
+     public static void main(String[] args) throws Exception {
+         try {
+             m1();
+         }
+        finally {
+             System.out.println("A");
+         }
+     }
+}
+o/p:/Test.java:5: error: unreported exception Exception; must be caught or declared to be thrown
+         throw new Exception();
+         ^
+1 error
+-------------
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+ 
+public class Test {
+     public static void main(String[] args) {
+         List<String> dryFruits = new ArrayList<>();
+         dryFruits.add("Walnut");
+         dryFruits.add("Apricot");
+         dryFruits.add("Almond");
+         dryFruits.add("Date");
+ 
+         ListIterator<String> iterator = dryFruits.listIterator();
+         while(iterator.hasNext()) {
+             if(iterator.next().startsWith("A")) {
+                 iterator.remove();
+              }
+         }
+ 
+         System.out.println(dryFruits);
+     }
+}
+o/p:[walnut,Date]
+-------------
+import java.time.*;
+public class Test {
+     public static void main(String [] args) {
+         LocalDate date = LocalDate.parse("2018-1-01"); format: 2018-01-01
+         System.out.println(date);
+     }
+}
+o/p:Exception in thread "main" java.time.format.DateTimeParseException: Text '2018-1-1' could not be parsed at index 5
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2046)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:428)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:413)
+	at Test.main(Test.java:4)
+-----------------------
+import java.time.LocalDate;
+ 
+public class Test {
+     public static void main(String [] args) {
+         LocalDate newYear = LocalDate.of(2018, 1, 1);
+         LocalDate eventDate = LocalDate.of(2018, 1, 1);
+         boolean flag1 = newYear.isAfter(eventDate);
+         boolean flag2 = newYear.isBefore(eventDate);
+         System.out.println(flag1 + ":" + flag2);
+     }
+}
+o/p:false:false
+----------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {
+     public static void main(String[] args) {
+         List<StringBuilder> days = new ArrayList<>();
+         days.add(new StringBuilder("Sunday"));
+         days.add(new StringBuilder("Monday"));
+         days.add(new StringBuilder("Tuesday"));
+         System.out.println(days);                               //pending
+ 
+         if(days.contains(new StringBuilder("Sunday"))) {        //in string contains method will be there in stringbuilder there is no such method
+             days.add(new StringBuilder("Wednesday"));
+         }
+    
+         System.out.println(days.size());
+     }
+}
+0/p:3
+
+public class Test {
+     public static void main(String[] args) {
+         StringBuilder sb = new StringBuilder("Java");
+         String s1 = sb.toString();
+         String s2 = "Java";
+ 
+         System.out.println(s1 == s2);
+     }
+}
+o/P: false
+-------------
+import java.time.Period;
+ 
+public class Test {
+     public static void main(String [] args) {
+         Period period = Period.of(2, 1, 0).ofYears(10).ofMonths(5).ofDays(2);
+         System.out.println(period);
+     }
+}
+o/p:P2D
+--------
+
+public class Test {
+     public static void main(String [] args) {
+         LocalDate date = LocalDate.of(2012, 1, 11);
+         Period period = Period.ofMonths(2);
+         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm-dd-yy");   //format pattern is different(yy-mm-dd)-->(mm-dd-yy)
+         System.out.print(formatter.format(date.minus(period)));
+     }
+}
+o/p:
+Exception in thread "main" java.time.temporal.UnsupportedTemporalTypeException: Unsupported field: MinuteOfHour
+---------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {
+     public static void main(String[] args) {
+         List<String> list = new ArrayList<>();
+         list.add("X");
+         list.add("Y");
+         list.add("X");
+         list.add("Y");
+         list.add("Z");
+         list.remove(new String("Y"));
+         System.out.println(list);
+     }
+}
+o/p:[X X Y Z]
+------------
+import java.util.ArrayList;
+ 
+public class Test {
+     public static void main(String[] args) {
+         ArrayList<Integer> original = new ArrayList<>();
+         original.add(new Integer(10));
+ 
+         ArrayList<Integer> cloned = (ArrayList<Integer>) original.clone();
+         Integer i1 = cloned.get(0);
+         ++i1;
+ 
+         System.out.println(cloned);
+     }
+}
+o/p:10
+--------------
+import java.util.function.Predicate;
+ 
+public class Test {
+     public static void main(String[] args) {
+         String [] arr = {"A", "ab", "bab", "Aa", "bb", "baba", "aba", "Abab"};
+ 
+         processStringArray(arr, p->p.length()<10);
+     }
+ 
+     private static void processStringArray(String [] arr, 
+                                                Predicate<String> predicate) {
+         for(String str : arr) {
+             if(predicate.test(str)) {
+                 System.out.println(str);
+             }
+         }
+     }
+}
+o/p: p->true
+p->!false
+p>p.length()>=1
+p->p.length()<10
+----------------
+ 
+public class Test {
+     public static void main(String[] args) {
+         String str1 = " ";
+         boolean b1 = str1.isEmpty();
+         System.out.println(b1);
+         str1.trim();                //trim() is used to delete empty spaces in a string
+         b1 = str1.isEmpty();
+         System.out.println(b1);
+     }
+}
+o/p:false
+   false
+-----------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {
+     public static void main(String [] args) {
+         List<Integer> list = new ArrayList<Integer>();
+ 
+         list.add(27);
+         list.add(27);
+ 
+         list.add(new Integer(27));
+         list.add(new Integer(27));
+ 
+         System.out.println(list.get(0) == list.get(1));
+         System.out.println(list.get(2) == list.get(3));
+     }
+}
+o/p:true
+false
+-------
+public class Test {
+     public String name;
+     public void Test() {
+         name = "James";
+     }
+ 
+     public static void main(String [] args) {
+         Test obj = new Test();
+         System.out.println(obj.name);
+     }
+}
+o/P:null
+
+----------------
+class Student {
+     String name;
+     int age;
+ 
+     Student() {
+         Student("James", 25);  //calling a constructor from another constructor we need to use this() method
+     }
+ 
+     Student(String name, int age) {
+         this.name = name;
+         this.age = age;
+     }
+}
+ 
+public class Test {
+     public static void main(String[] args) {
+         Student s = new Student();
+         System.out.println(s.name + ":" + s.age);
+     }
+}
+
+o/p:/Test.java:6: error: cannot find symbol
+         Student("James", 25);
+         ^
+  symbol:   method Student(String,int)
+  location: class Student
+1 error
+-----------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add(null);
+        list.add(null);
+        list.add(null);
+        System.out.println(list.remove(0) + ":" + list.remove(null));//if u pass object in remove method it will returns boolean value
+    }
+}
+o/P: null:true
+---------------------------------------
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.function.Predicate;
+ 
+class Employee {
+     private String name;
+     private int age;
+     private double salary;
+ 
+     public Employee(String name, int age, double salary) {
+         this.name = name;
+         this.age = age;
+         this.salary = salary;
+     }
+ 
+    public String getName() {
+         return name;
+     }
+ 
+    public int getAge() {
+         return age;
+     }
+ 
+    public double getSalary() {
+         return salary;
+     }
+ 
+     public String toString() {
+         return name;
+     }
+}
+ 
+public class Test {
+     public static void main(String [] args) {
+         List<Employee> list = new ArrayList<>();
+         list.add(new Employee("James", 25, 15000));
+         list.add(new Employee("Lucy", 23, 12000));
+         list.add(new Employee("Bill", 27, 10000));
+         list.add(new Employee("Jack", 19, 5000));
+         list.add(new Employee("Liya", 20, 8000));
+ 
+         process(list, e -> e.getAge() > 20);
+     }
+ 
+     private static void process(List<Employee> list, Predicate<Employee> predicate) {
+         Iterator<Employee> iterator = list.iterator();
+         while(iterator.hasNext()) {
+             Employee e = iterator.next();
+             if(predicate.test(e))
+                 System.out.print(e + " ");
+         }
+     }
+}
+o/p:James Lucy Bill 
+-------------------------------
+public class Test {
+     public static void main(String[] args) {
+         String s1 = "OcA";
+         String s2 = "oCa";
+         System.out.println(s1.equals(s2)); //content comparison
+     }
+}
+o/p:false
+------------
+public class Test {
+    public static void main(String[] args) {
+        String[][] arr = { { "7", "6", "5" }, { "4", "3" }, { "2", "1" } };
+        for (int i = 0; i < arr.length; i++) { //Line n1
+            for (int j = 0; j < arr[i].length; j++) { //Line n2
+                switch (arr[i][j]) { //Line n3
+                    case "2":
+                    case "4":
+                    case "6":
+                        break; //Line n4
+                    default: 
+                        continue; //Line n5
+                }
+                System.out.print(arr[i][j]); //Line n6
+            }
+        }
+    }
+}
+o/p:642
+----------
+public class Test {
+     public static void main(String[] args) {
+         System.out.println(args.length);
+     }
+}
+o/p:0
+-------------
+public class Test {
+     public static void main(String[] args) {
+         String fruit = "mango";
+         switch (fruit) {
+             case "Apple":
+                 System.out.println("APPLE");
+             case "Mango":
+                 System.out.println("MANGO");
+             case "Banana":
+                 System.out.println("BANANA");
+                 break;
+             default:
+                 System.out.println("ANY FRUIT WILL DO");
+         }
+     }
+}
+o/p:ANY FRUIT WILL DO
+-----------------
+public class Test {
+     public static void main(String[] args) {
+         int [] arr = {3, 2, 1};
+         for(int i : arr) {
+             System.out.println(arr[i]);
+         }
+     }
+}
+o/p:Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+	at Test.main(Test.java:5)
+-------------------
+public class Test {
+     public static void main(String[] args) {
+         Boolean b1 = new Boolean("tRuE");    //when we creating boolean object it is not case sensitive apart from true and false it will print default value
+         Boolean b2 = new Boolean("fAlSe");
+         Boolean b3 = new Boolean("abc");
+         Boolean b4 = null;
+         System.out.println(b1 + ":" + b2 + ":" + b3 + ":" + b4);
+     }
+}
+o/p:true:false:false:null
+--------------------------
+public class Test {
+ 
+     private static void add(double d1, double d2) {
+         System.out.println("double version: " + (d1 + d2));
+     }
+ 
+     private static void add(Double d1, Double d2) {
+         System.out.println("Double version: " + (d1 + d2));   //pending
+     }
+ 
+     public static void main(String[] args) {
+         add(10.0, new Integer(10));
+     }
+ 
+}
+o/p:double version: 20.0
+-----------
+public class Test {
+    public static void main(String[] args) {
+        m1(null);
+    }
+    
+    static void m1(CharSequence s) {
+        System.out.println("CharSequence");
+    }
+      static void m1(Object s) {
+        System.out.println("Object");
+    }
+    
+    static void m1(String s) {
+        System.out.println("String");
+    }
+    
+  
+}
+o/p:string
+--------------
+public class Test {
+     public static void main(String[] args) {
+         System.out.println("Output is: " + (10 != 5));
+     }
+}
+
+o/p:Output is true
+------------
+public class Test {
+     public static void main(String[] args) {
+         /*INSERT*/
+         short var=10;
+         switch(var) {
+             case 10:
+                 System.out.println("TEN");
+                 break;
+             default:
+                 System.out.println("DEFAULT");
+         }
+     }
+}
+o/p:byte,short,int,char
+
+
+switch can accept primitive types: byte, short, int, char; wrapper types: Byte, Short, Integer, Character; String and enums.
+
+In this case long and double are invalid values to be passed in switch expression. char uses 16 bits
+(2 Bytes) and its range is 0 to 65535 (no signed bit reserved) so it can easily store value 10.
+--------------------
+class Message {
+    public static void main(String [] args) {
+        System.out.println("Welcome " + args[0] + "!");
+    }
+}
+ 
+public class Guest {
+    public static void main(String [] args) {       //with in same class we can not give main method two times but in two classes we can write
+        Message.main(args);
+    }
+}
+o/P:welcome Goslin !
+-----------------------
+public class Test {
+     public static void main(String [] args) {
+         LocalDate date = LocalDate.parse("1980-03-16");       //pending
+         System.out.println(date.minusYears(-5));
+     }
+}
+o/p:1985-03-16
+
+minusYears, minusMonths, minusWeeks, minusDays methods accept long parameter so you can pass either positive or negative value.
+
+If positive value is passed, then that specified value is subtracted and if negative value is passed, then that specified value is added. I think you still remember: minus minus is plus. 
+
+
+
+Similarly plusYears, plusMonths, plusWeeks, plusDays methods work in the same manner.
+
+If positive value is passed, then that specified value is added and if negative value is passed, then that specified value is subtracted.
+-----------------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {
+     public static void main(String[] args) {
+         List<String> list = new ArrayList<>();
+         list.add("ONE");
+         list.add("TWO");
+         list.add("THREE");
+         list.add("THREE");
+ 
+         if(list.remove(2)) {           //if u remove any object present in list by using index it will return object as result 
+             list.remove("THREE"); 
+         }
+ 
+         System.out.println(list);
+    }
+}
+o/p:/Test.java:12: error: incompatible types: String cannot be converted to boolean
+         if(list.remove(2)) {
+                       ^
+1 error
+-------------------------
+import java.util.function.Predicate;
+ 
+public class Test {
+     public static void main(String[] args) {
+         String [] arr = {"*", "**", "***", "****", "*****"};
+         Predicate pr1 = s -> s.length() < 4;         //for strings we cannot apply predicate functions(lamda expressions) for list(collections) we can apply
+         print(arr, pr1);
+     }
+ 
+     private static void print(String [] arr, Predicate<String> predicate) {
+         for(String str : arr) {
+             if(predicate.test(str)) {
+                 System.out.println(str);
+             }
+         }
+     }
+}
+o/P:/Test.java:6: error: cannot find symbol
+         Predicate pr1 = s -> s.length() < 4;
+                               ^
+  symbol:   method length()
+  location: variable s of type Object
+Note: /Test.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 error
+------------------
+public class Test {
+    public static void main(String[] args) {
+        final String fName = "James";
+        String lName = "Gosling";
+        String name1 = fName + lName;
+        String name2 = fName + "Gosling";
+        String name3 = "James" + "Gosling";            //pending
+        System.out.println(name2 == name3);
+    }
+}
+o/p:false,true
+------------------------
+package com.udayan.oca;
+ 
+public class A {
+     public int i1;
+     protected int i2;
+     int i3;
+     private int i4;
+}
+
+
+//TestA.java
+package com.udayan.oca.test;
+ 
+import com.udayan.oca.A; //Line 3
+ 
+public class TestA {
+     public static void main(String[] args) {
+         A obj = new A(); //Line 7
+         System.out.println(obj.i1); //Line 8
+         System.out.println(obj.i2); //Line 9
+         System.out.println(obj.i3); //Line 10
+         System.out.println(obj.i4); //Line 11
+     }
+}
+
+o/p:class A is declared public and defined in com.udayan.oca package, there is no problem in accessing class A outside com.udayan.oca package.
+
+class TestA is defined in com.udayan.oca.test package, to use class A either use import statement 
+"import com.udayan.oca.A;" or fully qualified name of the class com.udayan.oca.A. No issues at Line 3 and LIne 7.
+
+
+
+As TestA is in different package so it can only access public members of class A using object reference. Line 8 compiles successfully.
+
+protected, default and private members are not accessible outside com.udayan.oca package using object reference.
+
+
+
+NOTE: protected members can be accessed outside but only through inheritance and not object reference.
+-------------------------------------------------------------------------------------
+
+Q)public class Test {
+    public static void main(String[] args) {
+        int i = 0;
+      
+        for(System.out.print(i++); i < 2; System.out.print(i++)) {
+            System.out.print(i);
+        }
+    }
+}
+o/P:011
+
+ interface Counter {
+    int count = 10; //Line n1   // in interface by default variable will be assinged as public static final 
+}
+public class Test {
+    public static void main(String[] args) {
+        Counter [] arr = new Counter[2]; //Line n2
+        for(Counter ctr : arr) {
+            System.out.print(ctr.count); //Line n3   //so Here  we can access through interface reference not through the object
+        }
+    }
+}
+o/p:1010
+
+ 
+Q)public class Test {
+     private static void div(int i, int j) {
+          
+        try {
+            System.out.println(i / j);
+        } catch(ArithmeticException e) {
+             Exception ex = new Exception(e);
+            throw ex;
+          
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            div(5, 0);
+        } catch(Exception e) {
+            System.out.println("END");
+        }
+    }
+}
+  o/p:/Test.java:8: error: unreported exception Exception; must be caught or declared to be thrown
+
+---------------------------
+q)
+class A {
+    public String toString() {
+        return null;
+    }
+}
+ 
+public class Test {
+    public static void main(String [] args) {
+        String text = null;
+        text = text + new A(); //Line n1
+         //System.out.println(text); //nullnull
+        System.out.println(text.length()); //Line n2
+    }
+}
+o/p:8
+
+Q)class Shape {
+    int side = 0; //Line n1
+ 
+    int getSide() { //Line n2
+        return side;
+    }
+}
+ 
+class Square extends Shape {
+    private int side = 4; //Line n3
+ 
+    protected int getSide() { //Line n4
+        return side;
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        Shape s = new Square();                           //when u do upcasting for same variables always parent value will be printed
+        System.out.println(s.side + ":" + s.getSide());    //when u are calling same method overiden method value will print
+    }
+}
+o/p:0:4
+
+Q)
+
+class Report {
+    public String generateReport() {
+        return "CSV";
+    }
+    
+    public Object generateReport() {
+        return "XLSX";
+    }
+}
+ 
+public class Test {
+    public static void main(String[] args) {
+        Report rep = new Report();
+        String csv = rep.generateReport();
+        Object xlsx = rep.generateReport();
+        System.out.println(csv + ":" + (String)xlsx);
+    }
+}
+o/p:same method already defined in class
+
+
+
+
+Q) interface Super {
+    String name = "SUPER"; //Line n1
+}
+
+
+
+ 
+ interface Sub extends Super { //Line n2
+ 
+}
+
+
+ 
+public class Test {
+    public static void main(String[] args) {
+        Sub sub = null;
+        System.out.println(sub.name); //Line n3
+    }
+}
+o/p:super
+
+Q)public class Test {
+    public static void main(String[] args) {
+        int i = 1;
+        int j = 5;
+        int k = 0;
+        A: while(true) {
+            i++;
+            B: while(true) {
+                j--;
+                C: while(true) {
+                    k += i + j;
+                    if(i == j)
+                        break A;
+                    else if (i > j)
+                        continue A;
+                    else 
+                        continue B;
+                }
+            }
+        }
+        System.out.println(k);
+    }
+}
+o/p:15
+
+Q)class Book {
+    private String name;
+    private String author;
+    
+    Book() {}
+    
+    Book(String name, String author) {
+         name = name;
+         author = author;
+    }
+    
+    String getName() {
+        return name;
+    }
+    
+     String getAuthor() {
+        return author;
+    }
+}
+ 
+public class TestBook {
+    public static void main(String[] args) {
+         private Book book = new Book("Head First Java", "Kathy Sierra");
+        System.out.println(book.getName());
+        System.out.println(book.getAuthor());
+    }
+}
+o/p:
+illegal start of expression
+         private Book book = new Book("Head First Java", "Kathy Sierra");
+
+
+Q)public class AvoidThreats {
+    public static void evaluate(Threat t) { //Line n5
+        t = new Threat(); //Line n6
+        t.name = "PHISHING"; //Line n7
+    }
+    
+    public static void main(String[] args) {
+        Threat obj = new Threat(); //Line n1
+        obj.print(); //Line n2
+        evaluate(obj); //Line n3
+        obj.print(); //Line n4
+    }
+}
+ 
+class Threat {
+    String name = "VIRUS";
+    
+    public void print() {
+        System.out.println(name);
+    }
+}
+
+o/p:VIRUS
+VIRUS
+
+
+Q)public class Test {
+    static int i1 = 10;
+    int i2 = 20;
+    
+    int add() {
+        return this.i1 + this.i2; //Line n1    //we can use this keyword to call sattic variable in the class inside instance method but we can not call inside static method
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(new Test().add()); //Line n2
+    }
+}
+o/p:30
+-------------------------
+Q)public class Test
+{
+    void readcard(int no) throws Exception  
+    {
+        System.out.println("raja");
+    }
+    void checkcard(int no) throws RuntimeException
+    {
+        System.out.println("vishnu");
+    }
+    public static void main(String[] args)
+    {
+        Test t=new Test();
+        int no=12233;
+        t.checkcard(no);  //line n2
+        t.readcard(no);   //line n3
+    }
+}
+
+o/p:Error at line n2 checked exception must handle
+------------------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+Q)public class Test {
+     public static void main(String[] args) {
+         List<String> trafficLight = new ArrayList<>();
+         
+         trafficLight.add(0, "RED");
+       
+         trafficLight.add(2, "GREEN");
+ 
+         trafficLight.remove(new Integer(2));
+ 
+         System.out.println(trafficLight);
+     }
+}
+o/p:Exception in thread "main" java.lang.IndexOutOfBoundsException: Index: 1, Size: 0
+	at java.base/java.util.ArrayList.rangeCheckForAdd(ArrayList.java:787)
+	at java.base/java.util.ArrayList.add(ArrayList.java:512)
+	at Test.main(Test.java:8)
+
+---------------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+Q)public class Test {
+     public static void main(String[] args) {
+         List<String> list = new ArrayList<>();
+         list.add(0, "Array");
+         list.set(0, "List");
+ 
+         System.out.println(list);
+     }
+}
+o/p:List -->set method used for replacing index
+if u use add method it will print [Array,List]
+-----------------------------
+ 
+Q)public class Test {
+     static Double d1;
+     static int x = d1.intValue();
+ 
+     public static void main(String[] args) {
+         System.out.println("HELLO");
+     }
+}
+o/p:
+Exception in thread "main" java.lang.ExceptionInInitializerError
+Caused by: java.lang.NullPointerException
+	at Test.<clinit>(Test.java:4)
+--------------------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+Q)public class Test {
+     public static void main(String[] args) {
+         List<Integer> list = new ArrayList<>();
+         list.add(110);
+         list.add(new Integer(110));
+         list.add(110);
+ 
+         list.removeIf(i -> i == 110);
+         System.out.println(list);
+     }
+}
+o/p:[] //removeIfmethod remove all the elements in a list when ever
+ the conditipon satisfies
+
+-------------------
+ 
+Q)public class Test {
+     public static void main(String[] args) {
+         StringBuilder sb = new StringBuilder("SpaceStation");
+         sb.delete(5, 6).insert(5, " S").toString().toUpperCase();  //after converting to string method we can do the method toUppercase()
+         System.out.println(sb);
+     }
+}
+o/p:Space Station 
+--------------------------------
+public class Test extends String {
+     @Override
+     public String toString() {
+         return "TEST";
+     }
+ 
+     public static void main(String[] args) {
+         Test obj = new Test();
+         System.out.println(obj);
+     }
+}
+o/p:/Test.java:1: error: cannot inherit from final String
+public class Test extends String {
+                          ^
+1 error
+-----------------------
+Q)public class Test {
+     public static void main(String[] args) {
+         String str = "Good"; //Line 3
+         change(str); //Line 4
+         System.out.println(str); //Line 5
+     }
+ 
+     private static void change(String s) {
+         s.concat("_Morning"); //Line 9
+     }
+}
+o/p:Good
+--------------------------
+Q)public class Test {
+     public static void main(String[] args) {
+         int a = 20;
+         int var = --a * a++ + a-- - --a;
+         System.out.println("a = " + a);
+         System.out.println("var = " + var);
+     }
+}
+o/p: a = 18
+    var = 363
+---------------------------
+import java.io.FileNotFoundException;
+ 
+public class Test {
+     public static void main(String[] args) {
+         try {
+             System.out.println(1);
+         } catch (NullPointerException ex) {
+             System.out.println("ONE");
+         } catch (FileNotFoundException ex) {
+             System.out.println("TWO");
+         }
+         System.out.println("THREE");
+     }
+}
+o/p:/Test.java:9: error: exception FileNotFoundException is never thrown in body of corresponding try statement
+         } catch (FileNotFoundException ex) {
+           ^
+1 error
+
+

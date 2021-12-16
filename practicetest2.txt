@@ -1,0 +1,60 @@
+Q)public class Test {
+     public static void main(String[] args) {
+         do {
+             System.out.println(100);
+         } while (true);
+ 
+         System.out.println("Bye"); //unreachable statement because after infinite loop we are printing statement
+     }
+}
+o/p:/Test.java:7: error: unreachable statement
+         System.out.println("Bye");
+         ^
+1 error
+--------------------------
+Q)public class Test {
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        try {
+            for(;;) {
+                sb.append("OCA");
+            }
+        } catch(Exception e) {
+            System.out.println("Exception!!!");
+        }
+        System.out.println("Main ends!!!");
+    }
+}
+o/p:Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+
+-------------------------
+Q)public class Test {
+     public static void main(String[] args) {
+         byte b1 = (byte) (127 + 21);
+         System.out.println(b1);
+     }
+}
+o/p:-108
+
+------------------
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class Test {
+     public static void main(String[] args) {
+         List<String> dryFruits = new ArrayList<>();
+         dryFruits.add("Walnut");
+         dryFruits.add("Apricot");
+         dryFruits.add("Almond");
+         dryFruits.add("Date");
+ 
+         for(String dryFruit : dryFruits) {
+             if(dryFruit.startsWith("A")) {
+                 dryFruits.remove(dryFruit);
+             }
+         }
+ 
+         System.out.println(dryFruits);
+     }
+}
+o/p:Exception in thread "main" java.util.ConcurrentModificationException
